@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Area restringida | app.consultora.local</title>
+  <link rel="stylesheet" href="/estilos.css">
+</head>
+<body>
+  <div class="envoltorio">
+    <span class="etiqueta">Acceso autorizado</span>
+    <h1>Area restringida</h1>
+    <p class="sub">La cabecera <code>X-Auth-Token</code> ha sido validada correctamente.</p>
+    <ul>
+      <li>Autorizacion verificada por <code>mod_authz_core</code> con <code>Require expr</code></li>
+      <li>Peticion registrada en <code>logs/auditoria_privado.log</code></li>
+      <li>Respuesta marcada como <code>no-store</code> para impedir cacheo</li>
+    </ul>
+  </div>
+</body>
+</html>

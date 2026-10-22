@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Backend Apache | app.consultora.local</title>
+  <link rel="stylesheet" href="/estilos.css">
+</head>
+<body>
+  <div class="envoltorio">
+    <span class="etiqueta">Capa de aplicacion</span>
+    <h1>Apache Backend</h1>
+    <p class="sub">Servidor interno: sin puertos publicados al host.</p>
+
+    <dl>
+      <div class="fila"><dt>Servidor</dt><dd>Apache HTTP Server 2.4</dd></div>
+      <div class="fila"><dt>Dominio</dt><dd>app.consultora.local</dd></div>
+      <div class="fila"><dt>Red</dt><dd>daw_red_interna (172.29.0.20)</dd></div>
+      <div class="fila"><dt>Acceso</dt><dd>Solo via proxy inverso Nginx</dd></div>
+      <div class="fila"><dt>IP real</dt><dd>Resuelta por mod_remoteip</dd></div>
+    </dl>
+
+    <div class="aviso">
+      El recurso <code>/privado/</code> exige la cabecera de autorizacion
+      <code>X-Auth-Token: DAW2026</code>. Sin ella, Apache responde
+      <strong>403 Forbidden</strong>.
+    </div>
+  </div>
+</body>
+</html>
