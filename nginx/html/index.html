@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Nginx Edge | www.consultora.local</title>
+    <link rel="stylesheet" href="/estilos.css" />
+  </head>
+  <body>
+    <div class="envoltorio">
+      <span class="etiqueta">Capa perimetral</span>
+      <h1>Nginx Edge</h1>
+      <p class="sub">Unico punto de entrada publicado hacia el host.</p>
+
+      <dl>
+        <div class="fila">
+          <dt>Servidor</dt>
+          <dd>Nginx 1.27 (Alpine)</dd>
+        </div>
+        <div class="fila">
+          <dt>Dominio</dt>
+          <dd>www.consultora.local</dd>
+        </div>
+        <div class="fila">
+          <dt>Redes</dt>
+          <dd>frontal 172.28.0.10 / interna 172.29.0.10</dd>
+        </div>
+        <div class="fila">
+          <dt>Backend</dt>
+          <dd>app.consultora.local &rarr; apache-backend:80</dd>
+        </div>
+      </dl>
+
+      <h2>Comprobacion rapida</h2>
+      <pre>
+curl -I http://www.consultora.local:8080/
+curl -I http://app.consultora.local:8080/
+curl -I -H "X-Auth-Token: DAW2026" \
+     http://app.consultora.local:8080/privado/</pre
+      >
+    </div>
+  </body>
+</html>
