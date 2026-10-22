@@ -1,0 +1,75 @@
+services:
+
+  nginx-edge:
+    image: nginx:1.27-alpine
+    container_name: edge_nginx
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    volumes:
+      # Configuracion y contenido en solo lectura
+      - ./nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./nginx/conf.d/00-hardening.conf:/etc/nginx/conf.d/00-hardening.conf:ro
+      - ./nginx/html:/usr/share/nginx/html:ro
+      # Los logs son el unico volumen con permiso de escritura
+      - ./nginx/logs:/var/log/nginx:rw
+    networks:
+      red_frontal:
+        ipv4_address: 172.28.0.10
+      red_interna:
+        ipv4_address: 172.29.0.10
+    depends_on:
+      apache-backend:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q --spider http://127.0.0.1/health || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    security_opt:
+      - no-new-privileges:true
+
+  apache-backend:
+    build:
+      context: ./apache
+      dockerfile: Dockerfile
+    image: daw/apache-backend:1.0
+    container_name: backend_apache
+    restart: unless-stopped
+    #no abre puerto al host
+    expose:
+      - "80"
+    volumes:
+      - ./apache/conf/sitio-privado.conf:/usr/local/apache2/conf/extra/sitio-privado.conf:ro
+      - ./apache/html:/usr/local/apache2/htdocs:ro
+      - ./apache/logs:/usr/local/apache2/logs:rw
+    networks:
+      red_interna:
+        ipv4_address: 172.29.0.20
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q --spider http://127.0.0.1/ || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    security_opt:
+      - no-new-privileges:true
+
+networks:
+  # Red de contacto con el host solo la usa Nginx.
+  red_frontal:
+    name: daw_red_frontal
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.28.0.0/24
+
+  # Red interna de contacto entre Nginx y Apache, no expuesta al host.
+  red_interna:
+    name: daw_red_interna
+    driver: bridge
+    internal: true
+    ipam:
+      config:
+        - subnet: 172.29.0.0/24
