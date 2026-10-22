@@ -1,34 +1,37 @@
 # Virtualizacion-y-Despliegue-de-Servidores-Web-con-Contenedores-Docker-Nginx-y-Apache-
 
-Archivos del proyecto
+## Archivos del proyecto
+
+```
 .
-├── docker-compose.yml # Levanta los dos contenedores y crea las redes
-├── .gitignore # Para que los logs no suban al repo
-├── .gitattributes # Fuerza finales de linea LF (trabajo en Windows)
+├── docker-compose.yml              # Levanta los dos contenedores y crea las redes
+├── .gitignore                      # Para que los logs no suban al repo
+├── .gitattributes                  # Fuerza finales de línea LF (trabajo en Windows)
 ├── README.md
 │
 ├── nginx/
-│ ├── conf.d/
-│ │ ├── 00-hardening.conf # Ajustes de seguridad generales
-│ │ └── default.conf # Los dos dominios y el proxy inverso
-│ ├── html/
-│ │ ├── index.html
-│ │ └── estilos.css
-│ └── logs/
+│   ├── conf.d/
+│   │   ├── 00-hardening.conf       # Ajustes de seguridad generales
+│   │   └── default.conf            # Los dos dominios y el proxy inverso
+│   ├── html/
+│   │   ├── index.html
+│   │   └── estilos.css
+│   └── logs/
 │
 └── apache/
-├── Dockerfile # Enciende solo los modulos que necesito
-├── conf/
-│ ├── hardening-base.conf # Ajustes de seguridad generales
-│ └── sitio-privado.conf # El sitio, /privado/ y los logs
-├── html/
-│ ├── index.html
-│ ├── estilos.css
-│ └── privado/
-│ └── index.html
-└── logs/
+    ├── Dockerfile                  # Enciende solo los módulos que necesito
+    ├── conf/
+    │   ├── hardening-base.conf     # Ajustes de seguridad generales
+    │   └── sitio-privado.conf      # El sitio, /privado/ y los logs
+    ├── html/
+    │   ├── index.html
+    │   ├── estilos.css
+    │   └── privado/
+    │       └── index.html
+    └── logs/
+```
 
-    He llamado al archivo 00-hardening.conf porque Nginx carga los archivos de conf.d por orden alfabético y en ese archivo defino el map y los formatos de log que luego uso en default.conf, y si se cargara después no arrancaria, con el 00- me aseguro de que va primero.
+He llamado al archivo 00-hardening.conf porque Nginx carga los archivos de conf.d por orden alfabético y en ese archivo defino el map y los formatos de log que luego uso en default.conf, y si se cargara después no arrancaria, con el 00- me aseguro de que va primero.
 
 Apache tiene Dockerfile y Nginx no porque a apache tengo que activarle módulos que vienen apagados en la imagen oficial, eso hay que hacerlo construyendo la imagen. Nginx me vale tal cual viene, solo le monto la configuración.
 
