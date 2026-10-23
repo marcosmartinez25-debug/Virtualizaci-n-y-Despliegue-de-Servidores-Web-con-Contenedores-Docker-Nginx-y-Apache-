@@ -147,7 +147,8 @@ curl -I http://app.consultora.local:8080/
 ```
 
 <!-- Los dos comandos curl -I seguidos, que se vea la cabecera X-Servido-Por -->
-![Los dos dominios respondiendo](capturas/01-ambos-dominios.png)
+![Los dos dominios respondiendo](<img width="2674" height="1366" alt="image" src="https://github.com/user-attachments/assets/b4bdd855-50b1-47b8-b57a-34cbd10d9ff5" />
+)
 
 Para distinguir quién contesta, le he metido a cada servidor una cabecera propia:
 
@@ -175,7 +176,8 @@ docker compose port apache-backend 80
 ```
 
 <!-- El docker compose ps (columna de puertos de Apache vacia) y el port fallando -->
-![Apache sin puertos publicados](capturas/02-aislamiento.png)
+![Apache sin puertos publicados](<img width="2713" height="298" alt="image" src="https://github.com/user-attachments/assets/4a0641ee-f293-4d16-9f48-6045978955b3" />
+)
 
 El segundo comando **falla a propósito** (devuelve `invalid IP:0`), y eso es justo lo que quiero demostrar: Apache no publica nada hacia mi ordenador.
 
@@ -204,7 +206,8 @@ curl -I -H "X-Auth-Token: DAW2026" http://app.consultora.local:8080/privado/
 ```
 
 <!-- Las tres peticiones seguidas: 403, 403 y 200 -->
-![Endpoint restringido](capturas/03-privado.png)
+![Endpoint restringido](<img width="1992" height="1536" alt="image" src="https://github.com/user-attachments/assets/a9491410-35f2-4f46-8a73-a8fa613296e0" />
+)
 
 Lo que he comprobado:
 
@@ -226,7 +229,8 @@ grep curl apache/logs/app_access.log | tail -5
 ```
 
 <!-- El contenido de app_access.log, que se vean las dos primeras columnas -->
-![Logs con la IP real](capturas/04-logs-ip-real.png)
+![Logs con la IP real](<img width="1972" height="1894" alt="image" src="https://github.com/user-attachments/assets/90476783-ef23-4653-a952-346ad37c52a0" />
+)
 
 Cada línea empieza con **dos IPs**:
 
