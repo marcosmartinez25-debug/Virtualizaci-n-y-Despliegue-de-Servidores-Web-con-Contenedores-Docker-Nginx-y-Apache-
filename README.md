@@ -147,7 +147,8 @@ curl -I http://app.consultora.local:8080/
 ```
 
 <!-- Los dos comandos curl -I seguidos, que se vea la cabecera X-Servido-Por -->
-<img width="1972" height="1894" alt="image" src="https://github.com/user-attachments/assets/76d25d0b-5b8a-4020-ad2c-6b67136f4ebe" />
+<img width="2674" height="1366" alt="image" src="https://github.com/user-attachments/assets/9e174e9a-5295-41e3-baa9-fec551ce313e" />
+
 
 
 Para distinguir quién contesta, le he metido a cada servidor una cabecera propia:
@@ -176,8 +177,8 @@ docker compose port apache-backend 80
 ```
 
 <!-- El docker compose ps (columna de puertos de Apache vacia) y el port fallando -->
-![Apache sin puertos publicados](<img width="2713" height="298" alt="image" src="https://github.com/user-attachments/assets/4a0641ee-f293-4d16-9f48-6045978955b3" />
-)
+<img width="2713" height="298" alt="image" src="https://github.com/user-attachments/assets/ed57ecdc-31c7-4caa-b0a7-dacb1b8b4076" />
+
 
 El segundo comando **falla a propósito** (devuelve `invalid IP:0`), y eso es justo lo que quiero demostrar: Apache no publica nada hacia mi ordenador.
 
@@ -206,8 +207,8 @@ curl -I -H "X-Auth-Token: DAW2026" http://app.consultora.local:8080/privado/
 ```
 
 <!-- Las tres peticiones seguidas: 403, 403 y 200 -->
-![Endpoint restringido](<img width="1992" height="1536" alt="image" src="https://github.com/user-attachments/assets/a9491410-35f2-4f46-8a73-a8fa613296e0" />
-)
+<img width="1992" height="1536" alt="image" src="https://github.com/user-attachments/assets/f009c7ea-c1e8-4c34-bab8-4ff9186b9dd2" />
+
 
 Lo que he comprobado:
 
@@ -229,8 +230,8 @@ grep curl apache/logs/app_access.log | tail -5
 ```
 
 <!-- El contenido de app_access.log, que se vean las dos primeras columnas -->
-![Logs con la IP real](<img width="1972" height="1894" alt="image" src="https://github.com/user-attachments/assets/90476783-ef23-4653-a952-346ad37c52a0" />
-)
+<img width="1972" height="1894" alt="image" src="https://github.com/user-attachments/assets/8cba655f-7234-4851-9ce3-a282cf239702" />
+
 
 Cada línea empieza con **dos IPs**:
 
