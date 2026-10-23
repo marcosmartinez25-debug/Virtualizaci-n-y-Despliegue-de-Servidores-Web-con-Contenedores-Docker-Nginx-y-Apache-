@@ -146,7 +146,6 @@ curl -I http://www.consultora.local:8080/
 curl -I http://app.consultora.local:8080/
 ```
 
-<!-- ===================== CAPTURA 1 ===================== -->
 <!-- Los dos comandos curl -I seguidos, que se vea la cabecera X-Servido-Por -->
 ![Los dos dominios respondiendo](capturas/01-ambos-dominios.png)
 
@@ -175,7 +174,6 @@ docker compose ps
 docker compose port apache-backend 80
 ```
 
-<!-- ===================== CAPTURA 2 ===================== -->
 <!-- El docker compose ps (columna de puertos de Apache vacia) y el port fallando -->
 ![Apache sin puertos publicados](capturas/02-aislamiento.png)
 
@@ -205,7 +203,6 @@ curl -I -H "X-Auth-Token: INCORRECTO" http://app.consultora.local:8080/privado/
 curl -I -H "X-Auth-Token: DAW2026" http://app.consultora.local:8080/privado/
 ```
 
-<!-- ===================== CAPTURA 3 ===================== -->
 <!-- Las tres peticiones seguidas: 403, 403 y 200 -->
 ![Endpoint restringido](capturas/03-privado.png)
 
@@ -228,7 +225,6 @@ Las minúsculas también dan 403 porque la comparación distingue mayúsculas, e
 grep curl apache/logs/app_access.log | tail -5
 ```
 
-<!-- ===================== CAPTURA 4 ===================== -->
 <!-- El contenido de app_access.log, que se vean las dos primeras columnas -->
 ![Logs con la IP real](capturas/04-logs-ip-real.png)
 
@@ -367,16 +363,3 @@ app_access_rgpd.log   10.10.10.0     <- el ultimo trozo a cero
 Y claro, en mi caso el cliente soy yo desde mi propio ordenador, que llego con una IP privada. Con la otra directiva no me habría salido nunca.
 
 **Cómo lo arreglé.** Cambiar a `RemoteIPInternalProxy`, que acepta las dos. Y no pierdo seguridad, porque sigo fiándome solo de la red interna, así que lo de falsear la IP sigue sin colar.
-
----
-
-## Checklist de la actividad
-
-| Lo que piden | Dónde está |
-|---|---|
-| Repositorio con estructura limpia y `.gitignore` | Raíz del proyecto |
-| `docker-compose.yml` que funciona y validado | `docker-compose.yml` + `docker compose config --quiet` |
-| `default.conf` con los sitios, el proxy y el hardening | `nginx/conf.d/default.conf` y `00-hardening.conf` |
-| Captura de `curl -I` en los dos dominios | Captura 1 |
-| Logs de `apache/logs/` con la IP real | Captura 4 |
-| README con el despliegue y el diagrama | Este archivo |
