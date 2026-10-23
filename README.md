@@ -147,8 +147,8 @@ curl -I http://app.consultora.local:8080/
 ```
 
 <!-- Los dos comandos curl -I seguidos, que se vea la cabecera X-Servido-Por -->
-![Los dos dominios respondiendo](<img width="2674" height="1366" alt="image" src="https://github.com/user-attachments/assets/b4bdd855-50b1-47b8-b57a-34cbd10d9ff5" />
-)
+<img width="1972" height="1894" alt="image" src="https://github.com/user-attachments/assets/76d25d0b-5b8a-4020-ad2c-6b67136f4ebe" />
+
 
 Para distinguir quién contesta, le he metido a cada servidor una cabecera propia:
 
